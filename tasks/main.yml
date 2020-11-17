@@ -1,0 +1,6 @@
+---
+- include_tasks: create-network.yml
+- include_tasks: start-postgresql.yml
+- include_tasks: start-redis.yml
+- include_tasks: start-postfix.yml
+- include_tasks: start-peertube.yml

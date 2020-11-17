@@ -1,0 +1,24 @@
+---
+- name: Start peertube postgresql Docker Container
+  docker_container:
+    name: "{{ peertube_postgres_container_name }}"
+    image: "{{ peertube_postgres_container_image }}:{{ peertube_postgres_container_tag }}"
+    volumes:
+      - "{{ peertube_postgres_container_volume }}:/var/lib/postgresql/data:rw"
+    env:
+      POSTGRES_USER: "{{ peertube_postgres_user }}"
+      POSTGRES_PASSWORD: "{{ peertube_postgres_password }}"
+      POSTGRES_DB: "{{ peertube_postgres_database }}"
+    network_mode: "{{ peertube_network_name }}"
+    networks:
+      - name: "{{ peertube_network_name }}"
+        aliases:
+          - "{{ peertube_postgres_container_name }}"
+    networks_cli_compatible: yes
+    purge_networks: yes
+    state: started
+    restart_policy: "unless-stopped"
+    restart: yes
+    labels:
+      network: "peertube"
+      project: "peertube"

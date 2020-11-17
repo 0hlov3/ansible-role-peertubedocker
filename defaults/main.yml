@@ -1,0 +1,31 @@
+# Peertube Network
+peertube_network_name: "peertube"
+
+#Peertube Instance Settings
+peertube_container_name: "peertube"
+peertube_container_image: "chocobozzz/peertube"
+peertube_container_tag: "production-buster"
+peertube_hostname: "your.domain.tld"
+peertube_admin_email: "my.email"
+peertube_data_volume: "/docker/peertube/peertube/data"
+peertube_config_volume: "/docker/peertube/peertube/config"
+
+#PostgreSQL Settings
+peertube_postgres_container_name: "postgres"
+peertube_postgres_container_image: "postgres"
+peertube_postgres_container_tag: "10-alpine"
+peertube_postgres_user: "peertube"
+peertube_postgres_password: "ChangeME!"
+peertube_postgres_database: "peertube"
+peertube_postgres_container_volume: "/docker/peertube/postgresql/data"
+
+#Redis Settings
+peertube_redis_container_name: "redis"
+peertube_redis_container_image: "redis"
+peertube_redis_container_tag: "4-alpine"
+
+#Postfix Settings
+peertube_postfix_container_name: "postfix"
+peertube_postfix_container_image: "mwader/postfix-relay"
+peertube_postfix_container_tag: "latest"
+peertube_postfix_container_volume: "/docker/peertube/postfix/openkim/keys"

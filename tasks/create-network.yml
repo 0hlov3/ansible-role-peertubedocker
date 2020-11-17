@@ -1,0 +1,9 @@
+---
+- name: Create peertube docker network
+  docker_network:
+    name: "{{ peertube_network_name }}"
+    ipam_driver: default
+    attachable: yes
+    labels:
+      network: "peertube"
+      project: "peertube"

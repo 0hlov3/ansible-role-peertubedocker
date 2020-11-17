@@ -1,0 +1,20 @@
+---
+- name: Start peertube postfix Docker Container
+  docker_container:
+    name: "{{ peertube_postfix_container_name }}"
+    image: "{{ peertube_postfix_container_image }}:{{ peertube_postfix_container_tag }}"
+    volumes:
+      - "{{ peertube_postfix_container_volume }}:/etc/opendkim/keys:rw"
+    network_mode: "{{ peertube_network_name }}"
+    networks:
+      - name: "{{ peertube_network_name }}"
+        aliases:
+          - "{{ peertube_postfix_container_name }}"
+    networks_cli_compatible: yes
+    purge_networks: yes
+    state: started
+    restart_policy: "unless-stopped"
+    restart: yes
+    labels:
+      network: "peertube"
+      project: "peertube"

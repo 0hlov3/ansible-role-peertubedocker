@@ -1,0 +1,18 @@
+---
+- name: Start peertube redis Docker Container
+  docker_container:
+    name: "{{ peertube_redis_container_name }}"
+    image: "{{ peertube_redis_container_image }}:{{ peertube_redis_container_tag }}"
+    network_mode: "{{ peertube_network_name }}"
+    networks:
+      - name: "{{ peertube_network_name }}"
+        aliases:
+          - "{{ peertube_redis_container_name }}"
+    networks_cli_compatible: yes
+    purge_networks: yes
+    state: started
+    restart_policy: "unless-stopped"
+    restart: yes
+    labels:
+      network: "peertube"
+      project: "peertube"

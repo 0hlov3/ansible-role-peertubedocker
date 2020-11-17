@@ -1,0 +1,42 @@
+---
+- name: Start peertube Docker Container
+  docker_container:
+    name: "{{ peertube_container_name }}"
+    image: "{{ peertube_container_image }}:{{ peertube_container_tag }}"
+    ports:
+      - "127.0.0.1:8082:9000"
+    volumes:
+     - "{{ peertube_data_volume }}:/data:rw"
+     - "{{ peertube_config_volume }}:/config:rw"
+    env:
+      PEERTUBE_DB_HOSTNAME: "{{ peertube_postgres_container_name }}"
+      PEERTUBE_DB_USERNAME: "{{ peertube_postgres_user }}"
+      PEERTUBE_DB_PASSWORD: "{{ peertube_postgres_password }}"
+      PEERTUBE_DB_SUFFIX: ""
+      POSTGRES_DB: "{{ peertube_postgres_database }}"
+      PEERTUBE_WEBSERVER_HOSTNAME: "{{ peertube_hostname }}"
+      PEERTUBE_TRUST_PROXY: "{{ peertube_trust_proxy }}"
+      PEERTUBE_SMTP_HOSTNAME: "{{ peertube_postfix_container_name }}"
+      PEERTUBE_SMTP_PORT: "25"
+      PEERTUBE_SMTP_FROM: "noreply@{{ peertube_hostname }}"
+      PEERTUBE_SMTP_TLS: "false"
+      PEERTUBE_SMTP_DISABLE_STARTTLS: "false"
+      PEERTUBE_ADMIN_EMAIL: "{{ peertube_admin_email }}"
+      POSTFIX_myhostname: "{{ peertube_hostname }}"
+      OPENDKIM_DOMAINS: "{{ peertube_hostname }}:peertube"
+      PEERTUBE_REDIS_HOSTNAME: "{{ peertube_redis_container_name }}"
+    network_mode: "{{ peertube_network_name }}"
+    networks:
+      - name: "{{ peertube_network_name }}"
+        aliases:
+          - "{{ peertube_container_name }}"
+        links:
+          - "{{ peertube_postgres_container_name }}:db"
+    networks_cli_compatible: yes
+    purge_networks: yes
+    state: started
+    restart_policy: "unless-stopped"
+    restart: yes
+    labels:
+      network: "peertube"
+      project: "peertube"
