@@ -9,6 +9,7 @@ peertube_hostname: "your.domain.tld"
 peertube_admin_email: "my.email"
 peertube_data_volume: "/docker/peertube/peertube/data"
 peertube_config_volume: "/docker/peertube/peertube/config"
+peertube_trust_proxy: '["127.0.0.1", "loopback", "172.18.0.0/16", "172.20.0.0/16", "172.28.0.1/16"]'
 
 #PostgreSQL Settings
 peertube_postgres_container_name: "postgres"
