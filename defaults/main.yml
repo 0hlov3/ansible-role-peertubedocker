@@ -14,7 +14,7 @@ peertube_trust_proxy: "[127.0.0.1, loopback, 172.18.0.0/16, 172.20.0.0/16, 172.2
 #PostgreSQL Settings
 peertube_postgres_container_name: "peertube-postgres"
 peertube_postgres_container_image: "postgres"
-peertube_postgres_container_tag: "10-alpine"
+peertube_postgres_container_tag: "13-alpine"
 peertube_postgres_user: "peertube"
 peertube_postgres_password: "ChangeME!"
 peertube_postgres_database: "peertube"
