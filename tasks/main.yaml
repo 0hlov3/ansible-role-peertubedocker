@@ -1,0 +1,8 @@
+---
+- include_tasks: create-peertube-directory.yaml
+- include_tasks: create-network.yaml
+- include_tasks: start-postgresql.yaml
+- include_tasks: start-redis.yaml
+- include_tasks: start-postfix.yaml
+- include_tasks: start-peertube.yaml
+...
