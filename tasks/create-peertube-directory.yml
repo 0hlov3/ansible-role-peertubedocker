@@ -1,0 +1,29 @@
+---
+- name: Create directory for Peertube Data
+  file:
+    path: "{{ peertube_data_volume }}"
+    state: directory
+    recurse: yes
+    mode: '0755'
+
+- name: Create directory for Peertube Config
+  file:
+    path: "{{ peertube_config_volume }}"
+    state: directory
+    recurse: yes
+    mode: '0755'
+
+- name: Create directory for Peertube PostgreSQL
+  file:
+    path: "{{ peertube_postgres_container_volume }}"
+    state: directory
+    recurse: yes
+    mode: '0755'
+
+- name: Create directory for Peertube Postfix
+  file:
+    path: "{{ peertube_postfix_container_volume }}"
+    state: directory
+    recurse: yes
+    mode: '0755'
+...
